@@ -25,7 +25,13 @@ ou
 yarn
 ```
 
-Após a instalação das dependências, basta executar o seguinte comando:
+Após a instalação das dependências:
+
+```
+altere o arquivo .env_local para .env e depois adicione a key na variável.
+```
+
+Feito o processo acima, basta executar o seguinte comando:
 
 ### Android
 
