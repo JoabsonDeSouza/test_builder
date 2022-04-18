@@ -11,16 +11,12 @@ import * as S from './styles';
 const Home: React.FC = () => {
   const { callAllFunctions, currentWeather, myLocation, loading } = useApp();
 
-  const weatherIsValid = useMemo(() => {
-    return currentWeather && currentWeather.weather[0];
-  }, [currentWeather]);
-
   const iconApi = useMemo(() => {
-    if (!weatherIsValid) {
+    if (!currentWeather || !currentWeather.weather) {
       return '';
     }
     return getUrlIcon(currentWeather?.weather[0].icon || '');
-  }, [currentWeather?.weather, weatherIsValid]);
+  }, [currentWeather]);
 
   return (
     <>
@@ -38,7 +34,7 @@ const Home: React.FC = () => {
 
         <S.TextHour>{getCurrentDate()}</S.TextHour>
 
-        {!!currentWeather?.main.temp && (
+        {!!currentWeather?.main?.temp && (
           <S.ContainerTexts>
             <S.Text size={45} bold>
               {convertTemperature(currentWeather?.main.temp) + '°'}
@@ -47,7 +43,7 @@ const Home: React.FC = () => {
           </S.ContainerTexts>
         )}
         <S.ContainerTemps>
-          {!!currentWeather?.main.temp && (
+          {!!currentWeather?.main?.temp && (
             <S.TextAndTemp>
               <S.Text>Min.</S.Text>
               <S.ContainerTexts>
@@ -59,7 +55,7 @@ const Home: React.FC = () => {
             </S.TextAndTemp>
           )}
 
-          {!!currentWeather?.main.temp && (
+          {!!currentWeather?.main?.temp && (
             <S.TextAndTemp>
               <S.Text>Máx.</S.Text>
               <S.ContainerTexts>
@@ -73,7 +69,7 @@ const Home: React.FC = () => {
         </S.ContainerTemps>
         <S.ContainerWeatherIcon>
           {!!iconApi && <S.Image source={{ uri: iconApi }} />}
-          {weatherIsValid && (
+          {currentWeather && currentWeather?.weather && (
             <S.Text>
               {capitalize(currentWeather?.weather[0]?.description || '')}
             </S.Text>

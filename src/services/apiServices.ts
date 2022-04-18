@@ -1,6 +1,8 @@
 import api from './BaseApi';
 
-const apiKey = 'b5b562ffaa3f559da2d96661499d9c5f';
+import { API_KEY } from '@env';
+
+const apiKey = API_KEY || '';
 
 export const getUserLocationByCoordinatesService = async (
   latitude: number,
