@@ -43,6 +43,3 @@ Após a instalação das dependências, basta executar o seguinte comando:
 ```
 > npx react-native run-android
 ```
-
--15,4839
--47,6393
